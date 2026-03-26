@@ -29,5 +29,5 @@ The Smart Hospital Bed Booking System is a web-based application designed to str
 - Payment gateway integration
 
 ## 👩‍💻 Author
-Sanika Dethe
-Pooja Chile
+- Sanika Dethe
+- Pooja Chile
