@@ -4,7 +4,7 @@ session_start();
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_unset();
     session_destroy();
-    header("Location: home.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -452,7 +452,7 @@ $hospital_list = $mysqli->query("SELECT hospital_id, hospital_name, city, state 
     <!-- =================== NAVBAR =================== -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container-fluid ps-4 pe-4">
-            <a class="navbar-brand" href="home.php">
+            <a class="navbar-brand" href="index.php">
                 <img src="https://media.istockphoto.com/id/1312665318/vector/medical-logo-design-vector.jpg?s=612x612&w=0&k=20&c=dp5fFItTDGnZy8j1gB0GVjqVyJPG_Xznp_JTRZFXCXs=" alt="Medical Team Logo">
                 <span>Medical Team</span>
             </a>
@@ -461,7 +461,7 @@ $hospital_list = $mysqli->query("SELECT hospital_id, hospital_name, city, state 
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="home.php"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php"><i class="fas fa-home"></i> Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="book.php"><i class="fas fa-bed"></i> Book Bed</a></li>
                     <li class="nav-item"><a class="nav-link" href="bookappointment.php"><i class="fas fa-calendar"></i> Appointment</a></li>
                     <li class="nav-item"><a class="nav-link" href="aboutus.php"><i class="fas fa-info-circle"></i> About</a></li>
@@ -599,3 +599,4 @@ $hospital_list = $mysqli->query("SELECT hospital_id, hospital_name, city, state 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
