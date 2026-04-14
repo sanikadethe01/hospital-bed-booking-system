@@ -2,6 +2,15 @@
 // Start session to manage logged-in user
 session_start();
 
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+  session_unset();
+  session_destroy();
+  header("Location: home.php");
+  exit();
+}
+
+$isLoggedIn = isset($_SESSION['user_id']);
+
 // Database connection settings
 $servername = "localhost"; // Change if necessary
 $username = "root";        // Replace with your MySQL username
@@ -394,7 +403,7 @@ $conn->close();
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="home.php"><i class="fas fa-home"></i> Home</a></li>
-          <?php if (isset($_SESSION['user_id'])): ?>
+          <?php if ($isLoggedIn): ?>
             <li class="nav-item"><a class="nav-link" href="book.php"><i class="fas fa-bed"></i> Book Bed</a></li>
             <li class="nav-item"><a class="nav-link" href="bookappointment.php"><i class="fas fa-calendar"></i>
                 Appointment</a></li>
@@ -402,11 +411,6 @@ $conn->close();
           <li class="nav-item"><a class="nav-link" href="aboutus.php"><i class="fas fa-info-circle"></i> About</a></li>
           <li class="nav-item"><a class="nav-link" href="healthtips.php"><i class="fas fa-heart"></i> Health Tips</a>
           </li>
-          <?php if (!isset($_SESSION['user_id'])): ?>
-            <li class="nav-item"><a class="nav-link active" href="login.php"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-          <?php else: ?>
-            <li class="nav-item"><a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-          <?php endif; ?>
         </ul>
       </div>
     </div>

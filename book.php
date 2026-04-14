@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    session_unset();
+    session_destroy();
+    header("Location: home.php");
+    exit();
+}
+
 $mysqli = new mysqli("localhost", "root", "", "hms");
 
 if ($mysqli->connect_error) {
@@ -153,19 +161,19 @@ $hospital_list = $mysqli->query("SELECT hospital_id, hospital_name, city, state 
         }
 
         .btn-login {
-            background-color: var(--accent-color);
-            color: var(--primary-dark) !important;
-            border-radius: 25px;
-            padding: 0.5rem 1.5rem;
-            font-weight: 600;
+            background: var(--accent-color);
+            color: var(--white) !important;
+            padding: 6px 12px;
+            border-radius: 20px;
             transition: all 0.3s ease;
-            margin-left: 15px;
+            margin-left: 8px;
+            text-decoration: none;
         }
 
         .btn-login:hover {
-            background-color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+            background: var(--primary-color);
+            color: var(--white) !important;
+            text-decoration: none;
         }
 
         /* =================== HERO SECTION =================== */

@@ -2,6 +2,15 @@
 // Initialize session
 session_start();
 
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    session_unset();
+    session_destroy();
+    header("Location: home.php");
+    exit();
+}
+
+$isLoggedIn = isset($_SESSION['user_id']);
+
 // Database configuration
 $servername = "localhost";  // Your database server
 $username = "root";         // MySQL username
@@ -181,6 +190,22 @@ $conn->close();
         .nav-link:hover::after,
         .nav-link.active::after {
             width: 100%;
+        }
+
+        .btn-login {
+            background: var(--accent-color);
+            color: var(--white) !important;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            margin-left: 8px;
+            text-decoration: none;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-color);
+            color: var(--white) !important;
+            text-decoration: none;
         }
 
         /* =================== REGISTER SECTION =================== */
@@ -437,8 +462,13 @@ $conn->close();
           <li class="nav-item"><a class="nav-link" href="aboutus.php"><i class="fas fa-info-circle"></i> About</a></li>
           <li class="nav-item"><a class="nav-link" href="healthtips.php"><i class="fas fa-heart"></i> Health Tips</a>
           </li>
-          
-        </ul>
+          <li class="nav-item">
+            <?php if ($isLoggedIn): ?>
+              <a href="?logout=true" class="nav-link btn-login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <?php else: ?>
+              <a href="login.php" class="nav-link btn-login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <?php endif; ?>
+          </li>
       </div>
     </div>
   </nav>

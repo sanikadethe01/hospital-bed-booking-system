@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    session_unset();
+    session_destroy();
+    header("Location: home.php");
+    exit();
+}
+
 $isLoggedIn = isset($_SESSION['user_id']);
 ?>
 
@@ -109,6 +117,23 @@ $isLoggedIn = isset($_SESSION['user_id']);
         .nav-link:hover::after,
         .nav-link.active::after {
             width: 100%;
+        }
+
+        /* =================== BTN-LOGIN =================== */
+        .btn-login {
+            background: var(--accent-color);
+            color: var(--white) !important;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            margin-left: 8px;
+            text-decoration: none;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-color);
+            color: var(--white) !important;
+            text-decoration: none;
         }
 
         /* =================== HERO SECTION =================== */
